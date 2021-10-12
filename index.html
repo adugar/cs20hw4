@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Joe's Hotdogs </title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<h2>Joe's Hotdogs</h2>
+
+<table padding: 5px 10px;>
+    <tr>
+        <td><div align="left">Item</div></td>
+        <td><div align="right">Quantity/Value</div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Hotdog</div></td>
+        <td><div id="hotdog_amount" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Fries</div></td>
+        <td><div id="fries_amount" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Drinks</div></td>
+        <td><div id="drinks_amount" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Subtotal</div></td>
+        <td><div id="subtotal" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Discount</div></td>
+        <td><div id="discount_amount" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Tax (6.25%)</div></td>
+        <td><div id="tax_amount" align="right"></div></td>
+    </tr>
+    <tr>
+        <td><div align="left">Total</div></td>
+        <td><div id="total_amount" align="right"></div></td>
+    </tr>
+</table>
+
+<p id="hotdogs"></p>
+<p id="fries"></p>
+<p id="drinks"></p>
+<p id="subtotal"></p>
+<p id="discount"></p>
+<p id="tax"></p>
+<p id="total"></p>
+<script>
+    var hotdogs = parseInt(prompt("Enter Number of Hotdogs"));
+    var fries = parseInt(prompt("Enter Number of Fries"));
+    var drinks = parseInt(prompt("Enter Number of Drinks"));
+    var total = (3.75 * hotdogs) + (2.00 * fries) + (1.50 * drinks);
+    total = total.toFixed(2);
+    var discountAmount = 0.0;
+
+    document.getElementById("hotdog_amount").innerHTML = hotdogs;
+    document.getElementById("fries_amount").innerHTML = fries;
+    document.getElementById("drinks_amount").innerHTML = drinks;
+    document.getElementById("subtotal").innerHTML = "$" + total;
+
+    if (total >= 20.00) {
+        discountAmount = total * .1;
+        discountAmount = discountAmount.toFixed(2);
+        total = total * .9;
+        total = total.toFixed(2);
+    }
+    var tax = total * .0625;
+    tax = tax.toFixed(2);
+
+    var finalTotal = parseFloat(total) + parseFloat(tax);
+    finalTotal = finalTotal.toFixed(2);
+
+    if (total >= 20.00) {
+        document.getElementById("discount_amount").innerHTML = "$" + discountAmount;
+    }
+    else {
+        document.getElementById("discount_amount").innerHTML = "No Discount -- Under $20";
+    }
+
+    document.getElementById("tax_amount").innerHTML = "$" + tax;
+    document.getElementById("total_amount").innerHTML = "<strong>$" + finalTotal + "</strong>";
+
+</script> 
+</body>
+</html>
